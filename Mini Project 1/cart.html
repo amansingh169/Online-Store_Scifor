@@ -1,0 +1,138 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./dist/style.css" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <title>Shoply Cart</title>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <nav class="navbar">
+          <a class="logo" href="index.html">Shoply</a>
+
+          <div class="search-bar">
+            <input type="text" placeholder="Search Shoply.com" />
+            <button class="search-btn"><i class="bx bx-search-alt"></i></button>
+          </div>
+
+          <div class="side-btns">
+            <a href="#" class="login">
+              <i class="bx bx-user-circle"></i>
+              Login / Register
+            </a>
+
+            <a href="cart.html" class="cart">
+              <i class="bx bx-cart"></i>
+              Cart
+            </a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <div class="container">
+        <div class="cart-grid">
+          <div class="address">
+            <div class="address-div">
+              <p>Deliver to: <span id="address">(Select pincode)</span></p>
+
+              <button class="pincode-btn"><i class="bx bxs-map-pin"></i> Choose Pincode</button>
+            </div>
+          </div>
+
+          <div class="price-details">
+            <div class="price-div">
+              <div class="price-heading">
+                <p>PRICE DETAILS</p>
+              </div>
+
+              <div class="price-cont">
+                <p>Price</p>
+                <p>$549.99</p>
+              </div>
+
+              <div class="price-cont">
+                <p>Discount</p>
+                <p>- $1000</p>
+              </div>
+
+              <div class="price-cont">
+                <p>Delivery Charges</p>
+                <p>$5</p>
+              </div>
+
+              <div class="total-price">
+                <p>Total Amount</p>
+                <p>$554.99</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="cart-products">
+            <div class="products-div">
+              <div class="cart-prod">
+                <a href="#"><h3>Kreo Hive RGB 75% Wired Mechanical Gaming Keyboard</h3></a>
+
+                <div>
+                  <span class="price">$54.99</span>
+                  <span class="cut-price">$70</span>
+                  <span class="discount">63% off</span>
+                </div>
+
+                <div class="quantity">
+                  <p>Quantity:</p>
+                  <input type="number" width="100px" />
+                </div>
+              </div>
+
+              <div class="cart-prod">
+                <a href="#"><h3>Kreo Hive RGB 75% Wired Mechanical Gaming Keyboard</h3></a>
+
+                <div>
+                  <span class="price">$54.99</span>
+                  <span class="cut-price">$70</span>
+                  <span class="discount">63% off</span>
+                </div>
+
+                <div class="quantity">
+                  <p>Quantity:</p>
+                  <input type="number" width="100px" />
+                </div>
+              </div>
+
+              <div class="cart-prod">
+                <a href="#"><h3>Kreo Hive RGB 75% Wired Mechanical Gaming Keyboard</h3></a>
+
+                <div>
+                  <span class="price">$54.99</span>
+                  <span class="cut-price">$70</span>
+                  <span class="discount">63% off</span>
+                </div>
+
+                <div class="quantity">
+                  <p>Quantity:</p>
+                  <input type="number" width="100px" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="logo">Shoply</div>
+
+          <p>© 2025 Shoply. All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
