@@ -1,0 +1,107 @@
+$bg-color: #1f1d27;
+$main-color: #9ccfd8;
+$sub-color: #c4a7e7;
+$sub-alt-color: #282533;
+$text-color: #e0def4;
+
+.text-color {
+  color: $text-color;
+}
+
+.text-sub {
+  color: $sub-color;
+}
+
+.text-sub-alt {
+  color: $sub-alt-color;
+}
+
+.text-main {
+  color: $main-color;
+}
+
+.bg-color {
+  background-color: $bg-color;
+}
+
+.bg-sub-alt {
+  background-color: $sub-alt-color;
+}
+
+.bg-main {
+  background-color: $main-color;
+}
+
+.container > h1 {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+body {
+  font-family: monospace;
+  color: $text-color;
+}
+
+.btn {
+  border: none;
+  border-radius: 100px;
+  color: $text-color;
+  background-color: $sub-alt-color;
+
+  &:hover {
+    color: $sub-alt-color;
+    background-color: $text-color;
+  }
+
+  &:active {
+    background-color: $main-color !important;
+  }
+}
+
+.home-page {
+  .start-btn {
+    padding-inline: 30px;
+  }
+}
+
+.score-container {
+  & > h1 {
+    line-height: 2;
+  }
+
+  .score-message {
+    margin-top: 50px;
+
+    h1 {
+      font-size: clamp(1.5rem, calc(1.5rem + 3.5vw), 5rem);
+    }
+
+    &.excellent h1 {
+      color: #ff9f21;
+    }
+
+    &.v-good h1 {
+      color: #3bff21;
+    }
+
+    &.good h1 {
+      color: #21a6ff;
+    }
+
+    &.poor h1 {
+      color: #ff5d5d;
+    }
+  }
+
+  .stats {
+    max-width: 700px;
+    margin: auto;
+  }
+}
+
+@media (max-width: 576px) {
+  .container {
+    padding: 1rem;
+  }
+}

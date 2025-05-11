@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz App</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="dist/styles.css" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.js"
+      integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body class="bg-color">
+    <header class="header bg-sub-alt py-4">
+      <h1 class="text-center text-main">General Knowledge Quiz</h1>
+    </header>
+
+    <div class="container my-5">
+      <div class="home-page my-5 text-center">
+        <p class="fs-4">This is a Quiz to test your General Knowledge.</p>
+
+        <button onclick="start_session()" class="btn btn-outline-light start-btn fs-3 my-5">
+          Start Quiz
+        </button>
+      </div>
+
+      <div class="mcq-container my-5 d-none">
+        <div class="mcq-header d-flex justify-content-between align-items-center my-5">
+          <h3 class="m-0 text-sub">Question <span id="ques-no">1</span>:</h3>
+
+          <button
+            onclick="restart_session()"
+            class="btn btn-outline-light fs-4 pb-1"
+            title="Restart the test"
+          >
+            <i class="bx bx-revision bx-flip-horizontal"></i>
+          </button>
+        </div>
+
+        <div class="mcq-main text-start">
+          <div class="mcq fs-4"></div>
+
+          <div class="my-5">
+            <p class="fs-5 text-sub">Select the correct answer:</p>
+
+            <ul class="mcq-options list-group"></ul>
+          </div>
+        </div>
+
+        <div class="mcq-footer d-flex justify-content-between align-items-center">
+          <button
+            onclick="home()"
+            class="prev-ques btn btn-outline-light d-flex align-items-center gap-1 fs-5 pe-3"
+          >
+            <i class="bx bx-left-arrow-alt"></i>
+            Home
+          </button>
+
+          <button class="next-ques btn btn-outline-light d-flex align-items-center gap-1 fs-5 ps-3">
+            Next
+            <i class="bx bx-right-arrow-alt"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="score-container my-5 d-none">
+        <h1 class="score-heading border-bottom text-center text-sub">Final Score</h1>
+
+        <div class="score-message text-center excellent">
+          <h1 class="text-main">🔥Excellent🔥</h1>
+          <h1>100%</h1>
+        </div>
+
+        <div class="stats mt-5 text-center">
+          <div class="d-flex justify-content-between fs-4">
+            <p class="text-sub">Correct Answers:</p>
+            <span id="correct-ans" class="text-success">10</span>
+          </div>
+
+          <div class="d-flex justify-content-between fs-4">
+            <p class="text-sub">Wrong Answers:</p>
+            <span id="wrong-ans" class="text-danger">0</span>
+          </div>
+
+          <div class="d-flex justify-content-between fs-4">
+            <p class="text-sub">Time Elapsed:</p>
+            <span id="total-time" class="text-color">1:38:786</span>
+          </div>
+
+          <button onclick="retake_session()" class="retake btn btn-outline-light fs-2 px-5 my-5">
+            Retake Test
+          </button>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
