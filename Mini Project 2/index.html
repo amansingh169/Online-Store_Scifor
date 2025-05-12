@@ -22,8 +22,10 @@
     </header>
 
     <div class="container my-5">
-      <div class="home-page my-5 text-center">
-        <p class="fs-4">This is a Quiz to test your General Knowledge.</p>
+      <div class="home-page my-5 d-flex flex-column align-items-center">
+        <p class="fs-4 text-center">This is a Quiz to test your General Knowledge.</p>
+
+        <img class="home-image" src="Assets/questionMark2.svg" alt="Question Mark" />
 
         <button onclick="start_session()" class="btn btn-outline-light start-btn fs-3 my-5">
           Start Quiz
@@ -31,8 +33,10 @@
       </div>
 
       <div class="mcq-container my-5 d-none">
+        <div id="timer">00:00</div>
+
         <div class="mcq-header d-flex justify-content-between align-items-center my-5">
-          <h3 class="m-0 text-sub">Question <span id="ques-no">1</span>:</h3>
+          <h3 class="m-0 text-sub">Question <span id="ques-no"></span>:</h3>
 
           <button
             onclick="restart_session()"
@@ -62,35 +66,36 @@
             Home
           </button>
 
-          <button class="next-ques btn btn-outline-light d-flex align-items-center gap-1 fs-5 ps-3">
+          <!-- <button class="next-ques btn btn-outline-light d-flex align-items-center gap-1 fs-5 ps-3">
             Next
             <i class="bx bx-right-arrow-alt"></i>
-          </button>
+          </button> -->
         </div>
       </div>
 
       <div class="score-container my-5 d-none">
         <h1 class="score-heading border-bottom text-center text-sub">Final Score</h1>
 
-        <div class="score-message text-center excellent">
-          <h1 class="text-main">🔥Excellent🔥</h1>
-          <h1>100%</h1>
+        <div class="score-message text-center">
+          <h1 id="message"></h1>
+          <h1 id="score"></h1>
+          <h4 id="comment" class="text-color"></h4>
         </div>
 
         <div class="stats mt-5 text-center">
           <div class="d-flex justify-content-between fs-4">
             <p class="text-sub">Correct Answers:</p>
-            <span id="correct-ans" class="text-success">10</span>
+            <span id="correct-ans" class="text-success"></span>
           </div>
 
           <div class="d-flex justify-content-between fs-4">
             <p class="text-sub">Wrong Answers:</p>
-            <span id="wrong-ans" class="text-danger">0</span>
+            <span id="wrong-ans" class="text-danger"></span>
           </div>
 
           <div class="d-flex justify-content-between fs-4">
             <p class="text-sub">Time Elapsed:</p>
-            <span id="total-time" class="text-color">1:38:786</span>
+            <span id="total-time" class="text-color"></span>
           </div>
 
           <button onclick="retake_session()" class="retake btn btn-outline-light fs-2 px-5 my-5">

@@ -63,6 +63,42 @@ body {
   .start-btn {
     padding-inline: 30px;
   }
+
+  .home-image {
+    width: clamp(200px, calc(200px + 20vw), 500px);
+  }
+}
+
+.mcq-container {
+  #timer {
+    font-size: 2rem;
+    text-align: end;
+  }
+
+  .mcq-main {
+    .mcq-options {
+      .list-group-item {
+        border: none;
+        border-radius: 10px;
+        transition: background-color 0.2s;
+        margin-bottom: 10px;
+        color: $text-color;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        &:hover {
+          background-color: $main-color;
+          color: $sub-alt-color;
+        }
+
+        &:active {
+          background-color: $text-color;
+        }
+      }
+    }
+  }
 }
 
 .score-container {
@@ -100,8 +136,8 @@ body {
   }
 }
 
-@media (max-width: 576px) {
-  .container {
-    padding: 1rem;
-  }
-}
+// @media (max-width: 576px) {
+//   .container {
+//     padding: 1rem;
+//   }
+// }

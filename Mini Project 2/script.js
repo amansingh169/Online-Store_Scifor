@@ -111,15 +111,32 @@ var mcqPage = $(".mcq-container");
 var scorePage = $(".score-container");
 var ques = $(".mcq");
 var optionContainer = $(".mcq-options");
+var timer = $("#timer");
+var scoreHeading = $(".score-message");
+var scoreMessage = $("#message");
+var scorePercentage = $("#score");
+var scoreComment = $("#comment");
+var correctAns = $("#correct-ans");
+var wrongAns = $("#wrong-ans");
+var totalTime = $("#total-time");
+var quesNo = $("#ques-no");
 
 let currentQuestion = 0;
 let score = 0;
-let timeTaken = 0;
+let startTime = null;
+let timeTaken = null;
+let elapsedTime = null;
+
+let timerInterval;
+
+const maxScore = quizData.length * 100;
 
 function start_session() {
   homePage.toggleClass("d-none");
   mcqPage.toggleClass("d-none");
+
   show_question();
+  start_timer();
 }
 
 function retake_session() {
@@ -130,6 +147,7 @@ function retake_session() {
   scorePage.toggleClass("d-none");
 
   show_question();
+  start_timer();
 }
 
 function restart_session() {
@@ -137,9 +155,11 @@ function restart_session() {
   score = 0;
 
   show_question();
+  start_timer();
 }
 
 function home() {
+  stop_timer();
   currentQuestion = 0;
   score = 0;
 
@@ -147,20 +167,52 @@ function home() {
   homePage.toggleClass("d-none");
 }
 
-function show_score() {
+function show_score(t) {
+  if (score <= maxScore * 0.2) {
+    scoreMessage.text(`💩OMG hell nah!💩`);
+    scoreHeading.css("color", "brown");
+    scoreComment.text("Did you even read the questions???");
+  } else if (score > maxScore * 0.2 && score <= maxScore * 0.4) {
+    scoreMessage.text(`☠️Below Average☠️`);
+    scoreHeading.css("color", "lightgrey");
+    scoreComment.text("Bro You need to IMPROOOVE!");
+  } else if (score > maxScore * 0.4 && score <= maxScore * 0.7) {
+    scoreMessage.text(`😒Average😒`);
+    scoreHeading.css("color", "skyblue");
+    scoreComment.text("Nah, You can do better...");
+  } else if (score > maxScore * 0.7 && score <= maxScore * 0.9) {
+    scoreMessage.text(`🤩Very Good🤩`);
+    scoreHeading.css("color", "Magenta");
+    scoreComment.text("Aha! That's my boy!");
+  } else if (score > maxScore * 0.9 && score <= maxScore * 1) {
+    scoreMessage.text(`🔥Excellent🔥`);
+    scoreHeading.css("color", "Gold");
+    scoreComment.text("Wait, are you a Genius or somehting!?!");
+  }
+
+  scorePercentage.text(`${(score / maxScore) * 100}%`);
+  correctAns.text(score / 100);
+  wrongAns.text((maxScore - score) / 100);
+  totalTime.text(
+    `${String(t.minutes).padStart(2, "0")}:${String(t.seconds).padStart(2, "0")}:${String(
+      t.milliseconds
+    ).padStart(2, "0")}`
+  );
+
   mcqPage.toggleClass("d-none");
   scorePage.toggleClass("d-none");
 }
 
 function show_question() {
   const curr = quizData[currentQuestion];
+  quesNo.text(currentQuestion + 1);
   ques.text("");
   ques.text(curr.question);
   optionContainer.text("");
 
   curr.options.forEach((opt) => {
     const optionItem = $(
-      `<a href="#" class="list-group-item list-group-item-dark list-group-item-action">${opt}</a>`
+      `<a href="#" id="mcq-opt" class="list-group-item list-group-item-dark list-group-item-action bg-sub-alt">${opt}</a>`
     );
 
     optionItem.on("click", (e) => {
@@ -171,7 +223,7 @@ function show_question() {
       }
 
       if (currentQuestion >= quizData.length) {
-        show_score();
+        show_score(stop_timer());
       } else {
         show_question();
       }
@@ -181,4 +233,39 @@ function show_question() {
 
     optionContainer.append(optionItem);
   });
+}
+
+function formatTime(time) {
+  let minutes = Math.floor((time / (1000 * 60)) % 60);
+  let seconds = Math.floor((time / 1000) % 60);
+  let milliseconds = Math.floor((time % 1000) / 10);
+
+  return { minutes, seconds, milliseconds };
+}
+
+function start_timer() {
+  timeTaken = 0;
+  startTime = Date.now();
+
+  if (timerInterval) clearInterval(timerInterval);
+
+  timerInterval = setInterval(() => {
+    elapsedTime = Date.now() - startTime;
+
+    let time = formatTime(elapsedTime);
+
+    timer.text(
+      `${String(time.minutes).padStart(2, "0")}:${String(time.seconds).padStart(2, "0")}:${String(
+        time.milliseconds
+      ).padStart(2, "0")}`
+    );
+  }, 100);
+}
+
+function stop_timer() {
+  clearInterval(timerInterval);
+  timerInterval = null;
+  timeTaken = formatTime(Date.now() - startTime);
+
+  return timeTaken;
 }
