@@ -181,12 +181,12 @@ function show_score(t) {
     scoreHeading.css("color", "skyblue");
     scoreComment.text("Nah, You can do better...");
   } else if (score > maxScore * 0.7 && score <= maxScore * 0.9) {
-    scoreMessage.text(`🤩Very Good🤩`);
-    scoreHeading.css("color", "Magenta");
-    scoreComment.text("Aha! That's my boy!");
+    scoreMessage.text(`🗿Very Good🗿`);
+    scoreHeading.css("color", "yellow");
+    scoreComment.text("Awesome! You are aware!");
   } else if (score > maxScore * 0.9 && score <= maxScore * 1) {
     scoreMessage.text(`🔥Excellent🔥`);
-    scoreHeading.css("color", "Gold");
+    scoreHeading.css("color", "orange");
     scoreComment.text("Wait, are you a Genius or somehting!?!");
   }
 
