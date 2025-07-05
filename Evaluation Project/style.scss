@@ -1,0 +1,149 @@
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@100..800&family=Wix+Madefor+Text:ital,wght@0,400..800;1,400..800&display=swap");
+
+$bg-color: #dfdfdf;
+$secondary-dark: #1e1e1e;
+$accent-color: #0077ff;
+$text-primary: #000000;
+$text-muted: #797979;
+$text-accent: #0077ff;
+
+$font-accent: "Sora", sans-serif;
+$font-primary: "Wix Madefor Text", sans-serif;
+
+body {
+  font-family: $font-primary;
+  color: $text-primary;
+  background-color: $bg-color;
+  scroll-behavior: smooth;
+}
+
+.bg-primary {
+  background-color: $accent-color !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-accent;
+  color: $text-primary;
+}
+
+.text-primary {
+  color: $text-primary !important;
+}
+
+.text-accent {
+  color: $text-accent !important;
+}
+
+.text-muted {
+  color: $text-muted !important;
+}
+
+.navbar-brand {
+  color: $text-primary;
+}
+
+.nav-link {
+  color: $text-primary !important;
+  text-transform: uppercase;
+
+  &:hover {
+    color: $text-accent !important;
+  }
+}
+
+.btn-outline-primary {
+  border-color: $text-accent !important;
+  color: $text-accent !important;
+  &:hover {
+    background-color: $text-accent !important;
+    color: $bg-color !important;
+  }
+}
+
+.navbar {
+  z-index: 10;
+}
+
+.hero-section {
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  z-index: 1;
+  animation: uncover linear;
+  animation-timeline: scroll();
+
+  @keyframes uncover {
+    to {
+      transform: translateY(-100%);
+    }
+  }
+
+  .hero-bg-video {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+  }
+
+  .btn-primary.btn-primary {
+    background-color: $accent-color;
+    border-color: $accent-color;
+    color: $bg-color;
+    padding: 0.8rem 2.5rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    &:hover {
+      background-color: darken($accent-color, 10%);
+      border-color: darken($accent-color, 10%);
+    }
+  }
+
+  .scroll-down {
+    position: absolute;
+    bottom: 50px;
+    animation: bounce 2s infinite;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+  }
+
+  @keyframes bounce {
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-10px);
+    }
+    60% {
+      transform: translateY(-5px);
+    }
+  }
+}
+
+.other-sections {
+  .features-section {
+    height: 100vh;
+    background-color: green;
+  }
+
+  .services-section {
+    height: 100vh;
+    background-color: red;
+  }
+}
+
+.section-heading {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: $text-primary;
+}
