@@ -1,11 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Sora:wght@100..800&family=Wix+Madefor+Text:ital,wght@0,400..800;1,400..800&display=swap");
 
-$bg-color: #dfdfdf;
-$secondary-dark: #1e1e1e;
-$accent-color: #0077ff;
-$text-primary: #000000;
-$text-muted: #797979;
-$text-accent: #0077ff;
+$bg-color: hsl(240, 3%, 14%);
+$bg-secondary: hsla(0, 0%, 100%, 0.7);
+$bg-card: hsl(240, 3%, 20%);
+$accent-color: hsl(212, 100%, 50%);
+$text-primary: hsl(0, 0%, 100%);
+$text-secondary: hsl(0, 0%, 0%);
+$text-muted: hsl(0, 0%, 47%);
+$text-accent: hsl(212, 100%, 50%);
 
 $font-accent: "Sora", sans-serif;
 $font-primary: "Wix Madefor Text", sans-serif;
@@ -13,12 +15,27 @@ $font-primary: "Wix Madefor Text", sans-serif;
 body {
   font-family: $font-primary;
   color: $text-primary;
-  background-color: $bg-color;
   scroll-behavior: smooth;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .bg-primary {
+  background-color: $bg-color !important;
+}
+
+.bg-secondary {
+  background-color: $bg-secondary !important;
+}
+
+.bg-accent {
   background-color: $accent-color !important;
+}
+
+.border-accent {
+  border-color: $accent-color !important;
 }
 
 h1,
@@ -35,6 +52,10 @@ h6 {
   color: $text-primary !important;
 }
 
+.text-secondary {
+  color: $text-secondary !important;
+}
+
 .text-accent {
   color: $text-accent !important;
 }
@@ -48,7 +69,7 @@ h6 {
 }
 
 .nav-link {
-  color: $text-primary !important;
+  color: $text-secondary !important;
   text-transform: uppercase;
 
   &:hover {
@@ -56,12 +77,28 @@ h6 {
   }
 }
 
+.btn {
+  z-index: 1;
+}
+
+.btn-primary {
+  background-color: $bg-color !important;
+  border: 2px solid $bg-secondary !important;
+
+  &:hover {
+    background-color: lighten($bg-color, 10%) !important;
+    border: 2px solid $bg-secondary !important;
+  }
+}
+
 .btn-outline-primary {
   border-color: $text-accent !important;
   color: $text-accent !important;
+  cursor: pointer;
+
   &:hover {
-    background-color: $text-accent !important;
-    color: $bg-color !important;
+    background-color: $accent-color !important;
+    color: $text-primary !important;
   }
 }
 
@@ -74,14 +111,7 @@ h6 {
   height: 100vh;
   width: 100%;
   z-index: 1;
-  animation: uncover linear;
-  animation-timeline: scroll();
-
-  @keyframes uncover {
-    to {
-      transform: translateY(-100%);
-    }
-  }
+  transition: transform 1s ease;
 
   .hero-bg-video {
     position: absolute;
@@ -89,19 +119,6 @@ h6 {
     height: 100%;
     object-fit: cover;
     z-index: -1;
-  }
-
-  .btn-primary.btn-primary {
-    background-color: $accent-color;
-    border-color: $accent-color;
-    color: $bg-color;
-    padding: 0.8rem 2.5rem;
-    font-size: 1.2rem;
-    font-weight: 600;
-    &:hover {
-      background-color: darken($accent-color, 10%);
-      border-color: darken($accent-color, 10%);
-    }
   }
 
   .scroll-down {
@@ -129,21 +146,56 @@ h6 {
   }
 }
 
-.other-sections {
-  .features-section {
-    height: 100vh;
-    background-color: green;
-  }
+.features-section {
+  position: relative;
+  height: 100vh;
+  padding-top: 150px;
+  z-index: -2;
 
-  .services-section {
-    height: 100vh;
-    background-color: red;
+  .animated-rects {
+    position: absolute;
+    bottom: 20px;
+    z-index: -1;
+    animation: translateX linear forwards;
+    animation-timeline: view();
+    animation-range-start: 400px;
+
+    @keyframes translateX {
+      to {
+        transform: translateX(-500px);
+      }
+    }
+
+    .rect {
+      width: 130px;
+      height: 370px;
+      border: 2px solid rgb(68, 68, 68);
+      border-radius: 5px;
+
+      &.border-accent {
+        animation: rotate linear;
+        animation-timeline: view();
+        animation-range: 400px 90vh;
+
+        @keyframes rotate {
+          to {
+            transform: perspective(500px) rotate3d(0, 1, 0, 180deg);
+          }
+        }
+      }
+    }
   }
 }
 
+.services-section {
+  height: 1000vh;
+  padding-top: 150px;
+}
+
 .section-heading {
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 700;
+  font-size: clamp(2rem, 5vw, 6rem);
+  line-height: 1.1;
   margin-bottom: 1.5rem;
   color: $text-primary;
+  z-index: 1;
 }

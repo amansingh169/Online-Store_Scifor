@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Star-Shaped Button</title>
+    <style>
+      .complex-shaped-button {
+        /* Basic button styling */
+        background-color: #8a2be2; /* Blue Violet */
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-size: 1.1em;
+        font-weight: bold;
+        padding: 20px 30px; /* Adjust padding to give shape enough room */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        overflow: hidden; /* Important if text could go outside the clip-path */
+        white-space: nowrap; /* Prevents text from wrapping if it should overflow */
+
+        /* --- THE COMPLEX SHAPE (Generated using a tool) --- */
+        clip-path: polygon(
+          20% 0%,
+          80% 0%,
+          100% 20%,
+          100% 80%,
+          80% 100%,
+          20% 100%,
+          0% 80%,
+          0% 20%
+        ); /* This is just an octagon example, a "very complex" one would have many more points */
+        /* For a true "very complex" shape, the polygon coordinates would be much longer. */
+        /* Example of a more complex generated shape (just illustrative, don't write by hand!) */
+        /* clip-path: polygon(50% 0%, 65% 15%, 85% 10%, 100% 25%, 90% 50%, 100% 75%, 85% 90%, 65% 85%, 50% 100%, 35% 85%, 15% 90%, 0% 75%, 10% 50%, 0% 25%, 15% 10%, 35% 15%); */
+
+        /* Optional: Add hover effects */
+        transition: background-color 0.3s ease, transform 0.3s ease, clip-path 0.3s ease;
+      }
+
+      .complex-shaped-button:hover {
+        background-color: #6a0dad; /* Darker purple on hover */
+        transform: scale(1.03); /* Slight scale */
+        /* You could even change the clip-path on hover for a morphing effect! */
+        /* clip-path: polygon(50% 5%, 60% 18%, 80% 15%, 95% 28%, 85% 50%, 95% 72%, 80% 85%, 60% 82%, 50% 95%, 40% 82%, 20% 85%, 5% 72%, 15% 50%, 5% 28%, 20% 15%, 40% 18%); */
+      }
+
+      .complex-shaped-button:active {
+        background-color: #4b0082; /* Even darker on click */
+        transform: scale(0.97);
+      }
+    </style>
+  </head>
+  <body>
+    <svg width="0" height="0" style="position: absolute">
+      <clipPath id="myComplexCurveShape">
+        <path
+          d="M50 0 C20 0, 0 20, 0 50 C0 80, 20 100, 50 100 C80 100, 100 80, 100 50 C100 20, 80 0, 50 0Z"
+        ></path>
+      </clipPath>
+    </svg>
+
+    <button class="complex-curved-button" style="clip-path: url(#myComplexCurveShape)">
+      Curvy Button
+    </button>
+  </body>
+</html>

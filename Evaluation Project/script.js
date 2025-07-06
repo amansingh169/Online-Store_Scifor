@@ -1,48 +1,54 @@
-document.addEventListener("DOMContentLoaded", () => {
-  // Smooth scrolling for navigation links
-  document.querySelectorAll(".navbar-nav .nav-link").forEach((anchor) => {
-    // Only apply to links that start with # (internal links)
-    if (anchor.getAttribute("href").startsWith("#")) {
-      anchor.addEventListener("click", function (e) {
-        e.preventDefault();
+const hero = document.getElementsByClassName("hero-section")[0];
+const heroBtn = document.getElementsByClassName("hero-btn")[0];
+let lastScroll = 0;
 
-        const targetId = this.getAttribute("href");
-        const targetElement = document.querySelector(targetId);
+window.onload = () => {
+  window.scrollTo(0, 0);
+};
 
-        if (targetElement) {
-          targetElement.scrollIntoView({
-            behavior: "smooth",
-          });
+window.addEventListener("wheel", (e) => {
+  const scrollY = window.scrollY;
 
-          // If the navbar is collapsed, close it after clicking a link
-          const navbarCollapse = document.getElementById("navbarNav");
-          const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse); // Get Bootstrap's Collapse instance
-          if (bsCollapse && navbarCollapse.classList.contains("show")) {
-            bsCollapse.hide();
-          }
-        }
-      });
+  if (e.deltaY > 1) {
+    if (scrollY > -1) {
+      hero.style.transform = "translateY(-100%)";
+
+      setTimeout(() => {
+        document.body.classList.remove("overflow-hidden");
+        document.body.classList.add("overflow-auto");
+      }, 1000);
     }
-  });
+  } else if (e.deltaY < 1) {
+    if (scrollY === 0) {
+      hero.style.transform = "translateY(0%)";
 
-  // Form Validation (Bootstrap's native validation)
-  const forms = document.querySelectorAll(".needs-validation");
+      setTimeout(() => {
+        document.body.classList.remove("overflow-auto");
+        document.body.classList.add("overflow-hidden");
+      }, 1000);
+    }
+  }
+});
 
-  Array.from(forms).forEach((form) => {
-    form.addEventListener(
-      "submit",
-      (event) => {
-        if (!form.checkValidity()) {
-          event.preventDefault();
-          event.stopPropagation();
-        }
-        form.classList.add("was-validated");
-      },
-      false
-    );
-  });
+window.addEventListener("scroll", (e) => {
+  const currentScroll = window.scrollY;
+  console.log(currentScroll);
 
-  // Optional: Animate progress bars on scroll if needed (more advanced)
-  // For simpler animation, CSS 'animation' property is often enough.
-  // The CSS @keyframes fillProgress already handles a basic animation on load.
+  if (currentScroll === 0) {
+    hero.style.transform = "translateY(0%)";
+
+    setTimeout(() => {
+      document.body.classList.remove("overflow-auto");
+      document.body.classList.add("overflow-hidden");
+    }, 1000);
+  }
+});
+
+heroBtn.addEventListener("click", () => {
+  hero.style.transform = "translateY(-100%)";
+
+  setTimeout(() => {
+    document.body.classList.remove("overflow-hidden");
+    document.body.classList.add("overflow-auto");
+  }, 1000);
 });
