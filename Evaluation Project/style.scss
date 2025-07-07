@@ -34,6 +34,10 @@ body {
   background-color: $accent-color !important;
 }
 
+.bg-card {
+  background-color: $bg-card !important;
+}
+
 .border-accent {
   border-color: $accent-color !important;
 }
@@ -46,6 +50,10 @@ h5,
 h6 {
   font-family: $font-accent;
   color: $text-primary;
+}
+
+.card-heading {
+  font-size: clamp(0.6rem, 0.6rem + 1vw, 2rem);
 }
 
 .text-primary {
@@ -74,6 +82,26 @@ h6 {
 
   &:hover {
     color: $text-accent !important;
+  }
+}
+
+.scroll-watcher {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background-color: rgb(255, 115, 0);
+  box-shadow: 0 0 10px rgb(255, 115, 0);
+  transform-origin: 0 0;
+  animation: watch-scroll linear;
+  animation-timeline: scroll();
+  z-index: 100;
+
+  @keyframes watch-scroll {
+    to {
+      width: 100%;
+    }
   }
 }
 
@@ -146,7 +174,7 @@ h6 {
   }
 }
 
-.features-section {
+.intro-section {
   position: relative;
   height: 100vh;
   padding-top: 150px;
@@ -188,8 +216,11 @@ h6 {
 }
 
 .services-section {
-  height: 1000vh;
-  padding-top: 150px;
+  padding-block: 150px;
+}
+
+.features-section {
+  padding-block: 150px;
 }
 
 .section-heading {
@@ -198,4 +229,82 @@ h6 {
   margin-bottom: 1.5rem;
   color: $text-primary;
   z-index: 1;
+}
+
+.services-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+
+  @media (max-width: 992px) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  @media (max-width: 576px) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .service-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8px;
+    aspect-ratio: 1;
+
+    animation: fade-up linear forwards;
+    animation-timeline: view();
+    animation-range: 100px 600px;
+
+    scale: 0.7;
+    opacity: 0.3;
+    transform: translateY(100px);
+
+    @keyframes fade-up {
+      to {
+        scale: 1;
+        opacity: 1;
+        transform: 0;
+      }
+    }
+
+    .card-num {
+      display: flex;
+      position: absolute;
+      top: 0;
+      left: 0;
+      gap: 15px;
+      width: fit-content;
+      margin-top: 8px;
+      margin-left: 8px;
+      border: 1px solid $accent-color;
+      border-radius: 7px;
+      padding: 4px 8px;
+    }
+  }
+}
+
+.features-container {
+  height: 4000px;
+
+  .feature-card {
+    position: sticky;
+    top: 150px;
+    border-radius: 5px;
+    height: 600px;
+
+    animation: shrink linear forwards;
+    animation-timeline: view();
+    animation-range: 700px 1000px;
+
+    @keyframes shrink {
+      to {
+        scale: 0.95;
+      }
+    }
+
+    &:first-child {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
 }

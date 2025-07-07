@@ -32,7 +32,6 @@ window.addEventListener("wheel", (e) => {
 
 window.addEventListener("scroll", (e) => {
   const currentScroll = window.scrollY;
-  console.log(currentScroll);
 
   if (currentScroll === 0) {
     hero.style.transform = "translateY(0%)";
