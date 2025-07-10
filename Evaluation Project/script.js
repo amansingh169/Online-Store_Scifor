@@ -2,9 +2,9 @@ const hero = document.getElementsByClassName("hero-section")[0];
 const heroBtn = document.getElementsByClassName("hero-btn")[0];
 let lastScroll = 0;
 
-window.onload = () => {
-  window.scrollTo(0, 0);
-};
+// window.onload = () => {
+//   window.scrollTo(0, 0);
+// };
 
 window.addEventListener("wheel", (e) => {
   const scrollY = window.scrollY;

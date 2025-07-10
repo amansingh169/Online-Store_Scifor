@@ -134,11 +134,30 @@ h6 {
   z-index: 10;
 }
 
+.rect {
+  height: clamp(200px, 20vw, 340px);
+  aspect-ratio: 2/5;
+  border: 2px solid rgb(68, 68, 68);
+  border-radius: 5px;
+
+  &.border-accent {
+    animation: rotate linear;
+    animation-timeline: view();
+    animation-range: 400px 90vh;
+
+    @keyframes rotate {
+      to {
+        transform: perspective(500px) rotate3d(0, 1, 0, 180deg);
+      }
+    }
+  }
+}
+
 .hero-section {
   position: absolute;
   height: 100vh;
-  width: 100%;
-  z-index: 1;
+  width: 100vw;
+  z-index: 2;
   transition: transform 1s ease;
 
   .hero-bg-video {
@@ -177,39 +196,22 @@ h6 {
 .intro-section {
   position: relative;
   height: 100vh;
+  width: 100vw;
+  overflow: clip;
   padding-top: 150px;
   z-index: -2;
 
-  .animated-rects {
+  .intro-rects-wrapper {
     position: absolute;
     bottom: 20px;
     z-index: -1;
-    animation: translateX linear forwards;
+    animation: translateX linear;
     animation-timeline: view();
-    animation-range-start: 400px;
+    animation-range-start: calc(50px + clamp(200px, 20vw, 340px));
 
     @keyframes translateX {
       to {
         transform: translateX(-500px);
-      }
-    }
-
-    .rect {
-      width: 130px;
-      height: 370px;
-      border: 2px solid rgb(68, 68, 68);
-      border-radius: 5px;
-
-      &.border-accent {
-        animation: rotate linear;
-        animation-timeline: view();
-        animation-range: 400px 90vh;
-
-        @keyframes rotate {
-          to {
-            transform: perspective(500px) rotate3d(0, 1, 0, 180deg);
-          }
-        }
       }
     }
   }
@@ -295,16 +297,59 @@ h6 {
     animation-timeline: view();
     animation-range: 700px 1000px;
 
-    @keyframes shrink {
-      to {
-        scale: 0.95;
-      }
-    }
-
     &:first-child {
       display: flex;
       align-items: center;
       justify-content: center;
     }
+  }
+
+  .features-rects-wrapper {
+    position: absolute;
+    display: grid;
+    place-items: center;
+    background: red;
+
+    .rect {
+      position: absolute;
+      border-color: rgb(163, 163, 163);
+
+      &:nth-child(1) {
+        animation: move-right linear forwards;
+        animation-timeline: view();
+        animation-range: 0 1000px;
+      }
+
+      &:nth-child(2) {
+        animation: move-left linear forwards;
+        animation-timeline: view();
+        animation-range: 0 1000px;
+      }
+
+      @keyframes move-right {
+        to {
+          translate: 200%;
+        }
+      }
+
+      @keyframes move-left {
+        to {
+          translate: -200%;
+        }
+      }
+    }
+  }
+}
+
+.values-container {
+  height: 300vh;
+  animation: shrink linear reverse;
+  animation-timeline: view();
+  animation-range: 0 1000px;
+}
+
+@keyframes shrink {
+  to {
+    scale: 0.95;
   }
 }
